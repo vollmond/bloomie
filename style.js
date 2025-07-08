@@ -10,8 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Lógica do Conteúdo Dinâmico ---
 
-    // 1. O nosso "dicionário" de conteúdo (por enquanto, com exemplos)
-   // 1. O nosso "dicionário" de conteúdo (AGORA COM OS SEUS TEXTOS)
+
 const contentData = {
     "dep": {
         title: "Depilação a Laser com Tecnologia Três Ondas",
@@ -90,6 +89,5 @@ const contentData = {
         });
     });
 
-    // 5. Mostra o conteúdo inicial ao carregar a página
-    displayContent('servicoA');
+
 });
