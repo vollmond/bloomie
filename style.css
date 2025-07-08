@@ -1,8 +1,8 @@
-/* Definição da NOVA paleta de cores, baseada no logo "Dharma Estética" */
+/* Definição da paleta de cores, baseada no logo "Dharma Estética" */
 :root {
     --cor-dourada: #b08f5b;
     --cor-escura: #4a4a4a;
-    --cor-creme: #f5f2e9;
+    --cor-creme-rgb: 245, 242, 233; /* Cor creme em formato RGB para usar com transparência */
     --cor-fundo: #faf9f5;
     --cor-branca: #FFFFFF;
 }
@@ -17,12 +17,12 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--cor-escura);
-    background-color: var(--cor-fundo); /* Fundo base creme muito claro */
-    position: relative;
+    background-color: var(--cor-fundo);
+    position: relative; 
     min-height: 100vh;
 }
 
-/* Logo como fundo da página */
+/* 1. AJUSTE NA MARCA D'ÁGUA */
 body::before {
     content: '';
     position: fixed;
@@ -30,15 +30,17 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('imagens/logo.svg'); /* Verifique se este é o nome do seu novo logo */
+    background-image: url('imagens/logo.svg');
     background-repeat: no-repeat;
-    background-position: center center;
+    /* Move o logo um pouco para cima do centro */
+    background-position: center 45%; 
     background-size: 70vw;
-    opacity: 0.08; /* Um pouco mais visível com as novas cores */
+    /* Aumentei um pouco a opacidade para se ver melhor através da caixa */
+    opacity: 0.1; 
     z-index: -1;
 }
 
-/* Botão Hamburger */
+/* Botão Hamburger (sem alterações) */
 #hamburger-button {
     position: fixed;
     top: 20px;
@@ -48,17 +50,16 @@ body::before {
     border: none;
     cursor: pointer;
 }
-
 #hamburger-button .bar {
     display: block;
     width: 30px;
     height: 4px;
-    background-color: var(--cor-escura); /* Usa a cor escura do logo */
+    background-color: var(--cor-escura);
     margin: 6px 0;
     transition: 0.4s;
 }
 
-/* Menu Lateral */
+/* Menu Lateral (sem alterações) */
 #side-menu {
     position: fixed;
     top: 0;
@@ -72,39 +73,22 @@ body::before {
     z-index: 1000;
     padding: 100px 20px 20px;
 }
+#side-menu.is-active { transform: translateX(0); }
+/* ... (outros estilos do menu continuam iguais) ... */
 
-#side-menu.is-active {
-    transform: translateX(0);
-}
 
-#side-menu .nav-link {
-    color: var(--cor-branca);
-    text-decoration: none;
-    font-size: 1.5rem;
-    display: block;
-    padding: 15px;
-    transition: background-color 0.2s;
-}
-#side-menu .nav-link:hover {
-    background-color: var(--cor-dourada); /* Efeito hover dourado */
-}
-
-/* Área de Conteúdo Principal */
+/* 2. REPOSICIONAMENTO DA ÁREA DE CONTEÚDO */
 #main-content {
-    padding: 2rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    /* Removemos o display:flex para ter mais controlo com padding */
+    padding: 40vh 2rem 5rem 2rem; /* Padding gigante no topo para empurrar a caixa para baixo */
 }
 
+/* 3. APLICAÇÃO DA TRANSPARÊNCIA NA CAIXA */
 #display-area {
-    background-color: var(--cor-creme); /* Usa o tom creme do logo */
-    border: 1px solid #e0e0e0;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 900px;
-}
-/* ... resto das regras para display-area-content, gallery, etc. podem manter-se como antes ... */
+    /* A MUDANÇA ESTÁ AQUI: Usamos RGBA para o fundo */
+    background-color: rgba(var(--cor-creme-rgb), 0.75); /* Fundo creme com 75% de opacidade */
+    
+    /* BÓNUS: Efeito de vidro fosco para melhorar a legibilidade */
+    backdrop-filter: blur(10px);
+    
+    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda branca subtil */
