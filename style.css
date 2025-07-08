@@ -31,7 +31,7 @@ body::before {
     height: 100%;
     
     /* A sua imagem de logo */
-    background-image: url('images/logo.svg'); /* Verifique se o caminho está correto! */
+    background-image: url('imagens/logo.svg'); /* Verifique se o caminho está correto! */
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 70vw; /* Ajuste: 70% da largura da janela */
