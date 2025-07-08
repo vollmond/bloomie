@@ -80,7 +80,7 @@ body::before {
 /* 2. REPOSICIONAMENTO DA ÁREA DE CONTEÚDO */
 #main-content {
     /* Removemos o display:flex para ter mais controlo com padding */
-    padding: 40vh 2rem 5rem 2rem; /* Padding gigante no topo para empurrar a caixa para baixo */
+    padding: 120vh 2rem 5rem 2rem; /* Padding gigante no topo para empurrar a caixa para baixo */
 }
 
 /* 3. APLICAÇÃO DA TRANSPARÊNCIA NA CAIXA */
