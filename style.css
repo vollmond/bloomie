@@ -190,6 +190,7 @@ body::before {
     align-items: center; 
     justify-content: center;
     gap: 8px;
+    line-height: 1;
     margin-top: 1.5rem;
     background-color: #25D366; /* Cor oficial do WhatsApp */
     color: #FFFFFF !important;
