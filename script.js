@@ -97,5 +97,4 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    displayContent('dep');
 });
