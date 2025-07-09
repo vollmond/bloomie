@@ -37,31 +37,43 @@ body::before {
     z-index: -1;
 }
 
-/* O CONTEÚDO PRINCIPAL, AGORA RESPONSÁVEL POR CENTRALIZAR A CAIXA */
+/* AJUSTE NA ÁREA DE CONTEÚDO PRINCIPAL */
 #main-content {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
-    min-height: 100vh; /* Ocupa a altura total do ecrã */
+    min-height: 100vh;
     padding: 2rem;
 }
 
-/* A CAIXA DE CONTEÚDO FLUTUANTE */
+/* A CAIXA AGORA FICA INVISÍVEL */
 #display-area {
-    background-color: var(--cor-caixa);
-    border-radius: 12px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-    padding: 2rem;
+    /* Removemos o fundo, a borda e a sombra para a tornar invisível */
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    
+    /* Mantemos o resto para estruturar o conteúdo */
+    padding: 2.5rem;
     width: 100%;
-    max-width: 550px; /* Caixa mais pequena e elegante */
-    text-align: center; /* Centraliza todo o texto por defeito */
+    max-width: 650px; /* Podemos ajustar a largura do texto */
+    text-align: center;
 }
 
-/* Estilos para o conteúdo dinâmico que será carregado */
+/* O TRUQUE PARA O TEXTO FICAR LEGÍVEL */
+#text-container h2,
+#text-container p {
+    /* Adicionamos uma sombra de texto que funciona como um "brilho" subtil,
+       separando as letras do fundo e garantindo a legibilidade. */
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.9);
+}
+
+/* Mantemos os estilos da galeria e do título como estavam */
 #text-container h2 {
     margin-bottom: 1rem;
-    font-size: 1.5rem;
+    font-size: 1.8rem; /* Um pouco maior para mais impacto */
+    color: var(--cor-escura);
 }
 
 #text-container p {
