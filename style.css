@@ -61,45 +61,47 @@ body::before {
     text-align: center;
 }
 
-/* O TRUQUE PARA O TEXTO FICAR LEGÍVEL */
-#text-container h2,
-#text-container p {
-    /* Adicionamos uma sombra de texto que funciona como um "brilho" subtil,
-       separando as letras do fundo e garantindo a legibilidade. */
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 0.9);
+/* Garante que o container do texto e da galeria ocupam a mesma largura,
+   resolvendo o problema de alinhamento no telemóvel. */
+#text-container,
+#gallery-container {
+    width: 100%;
 }
 
-/* Mantemos os estilos da galeria e do título como estavam */
+/* Estilos para o Título (H2) */
 #text-container h2 {
-    margin-bottom: 1rem;
-    font-size: 1.8rem; /* Um pouco maior para mais impacto */
     color: var(--cor-escura);
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center; /* Garante que o título está sempre centrado */
+    /* A regra 'text-shadow' foi removida, já não é necessária com o fundo atual. */
 }
 
+/* Estilos para o Parágrafo (P) com o texto justificado */
 #text-container p {
-    line-height: 1.7;
     font-size: 1rem;
+    line-height: 1.7;
+    text-align: justify; /* O seu pedido para justificar o texto */
+    hyphens: auto;      /* Ajuda na hifenização para um look mais limpo */
+    /* A regra 'text-shadow' foi removida. */
 }
 
-/* No seu style.css, encontre e substitua a regra existente */
-
+/* Estilos para a Galeria de Imagens */
 #gallery-container {
     display: grid;
     gap: 1rem;
-
-    /* A NOVA REGRA MÁGICA: */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduzi um pouco o minmax para melhor ajuste */
+    margin-top: 2rem; /* Adiciona um bom espaço entre o texto e a galeria */
 }
 
-/* A regra para a imagem em si pode manter-se ou ser esta,
-   para garantir a proporção quadrada que gostou */
+/* Estilos para cada Imagem da Galeria */
 #gallery-container img {
     width: 100%;
     object-fit: cover;
     border-radius: 8px;
     aspect-ratio: 1 / 1; /* Mantém as imagens quadradas */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adiciona uma sombra subtil às imagens */
 }
-
 
 /* --- ESTILOS DO MENU HAMBURGER E PAINEL LATERAL (VERSÃO CORRIGIDA) --- */
 
