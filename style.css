@@ -101,19 +101,6 @@ body::before {
 }
 
 
-
-/* DESKTOP (Ecrãs maiores que 768px) */
-@media (min-width: 768px) {
-    /* Dentro do seu @media query que já existe, adicione ou substitua a regra para a galeria */
-    #gallery-container {
-        /* Muda para uma grelha de 3 colunas em ecrãs maiores */
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-
-
-
 /* --- ESTILOS DO MENU HAMBURGER E PAINEL LATERAL (VERSÃO CORRIGIDA) --- */
 
 #hamburger-button {
