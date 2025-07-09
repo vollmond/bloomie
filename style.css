@@ -17,9 +17,8 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--cor-escura);
-    background-color: var(--cor-fundo);
-    position: relative; 
-    min-height: 100vh;
+    background-color: #e0e0e0; /* Um cinza neutro para o fundo da página inteira */
+    /* Removemos o background-image daqui */
 }
 
 /* 1. AJUSTE NA MARCA D'ÁGUA */
@@ -40,6 +39,32 @@ body::before {
     z-index: -1;
 }
 
+#page-wrapper {
+    width: 90%; /* Ocupa 90% da largura do ecrã */
+    max-width: 1200px; /* Mas não passa de 1200px */
+    margin: 5vh auto; /* Centraliza horizontalmente e dá uma margem vertical de 5% da altura do ecrã */
+    
+    /* A IMAGEM DE FUNDO VEM PARA AQUI */
+    background-image: url('imagens/fundo-bloome.jpg'); /* USE O NOME DA SUA IMAGEM DE FUNDO */
+    background-size: cover; /* Cobre todo o espaço do contentor */
+    background-position: center;
+
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Sombra para dar o efeito de "flutuar" */
+    overflow: hidden; /* Garante que tudo (ex: o header) fica dentro dos cantos arredondados */
+}
+
+header {
+    background: rgba(44, 62, 80, 0.8); /* Exemplo: um fundo escuro semi-transparente para a tira */
+    padding: 1rem;
+    /* Removemos width: 100%, pois ele agora está contido pelo #page-wrapper */
+}
+
+header nav ul {
+    /* ... os seus estilos de navegação ... */
+    text-align: center; /* Exemplo para centrar os links dentro da tira */
+}
+
 /* Botão Hamburger (sem alterações) */
 #hamburger-button {
     position: fixed;
@@ -57,6 +82,17 @@ body::before {
     background-color: var(--cor-escura);
     margin: 6px 0;
     transition: 0.4s;
+}
+
+main {
+    padding: 2rem; /* Espaçamento interno para o conteúdo não colar nas bordas */
+}
+
+/* O #display-area agora pode ter um fundo transparente ou branco simples */
+#display-area {
+    background-color: rgba(255, 255, 255, 0.9); /* Um branco semi-transparente */
+    border-radius: 8px;
+    padding: 2rem;
 }
 
 /* Menu Lateral (sem alterações) */
