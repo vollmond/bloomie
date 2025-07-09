@@ -95,15 +95,19 @@ body::before {
 
 /* --- ESTILOS DO MENU HAMBURGER E PAINEL LATERAL (ajustados) --- */
 
+/* --- ESTILOS DO MENU HAMBURGER E PAINEL LATERAL (VERSÃO CORRIGIDA) --- */
+
 #hamburger-button {
-    position: fixed;
+    position: fixed; /* Fixo na janela do navegador */
     top: 20px;
     right: 20px;
-    z-index: 1001;
+    z-index: 1001; /* Fica sempre por cima do menu */
     background: none;
     border: none;
     cursor: pointer;
+    padding: 10px;
 }
+
 #hamburger-button .bar {
     display: block;
     width: 30px;
@@ -113,22 +117,33 @@ body::before {
     transition: 0.4s;
 }
 
+/* O painel do menu lateral (escondido por defeito) */
 #side-menu {
     position: fixed;
     top: 0;
     right: 0;
-    height: 100vh;
-    width: 280px;
-    background-color: #333; /* Um fundo escuro para o menu */
+    height: 100vh; /* Ocupa a altura toda do ecrã */
+    width: 280px;  /* Largura do menu */
+    background-color: #333;
     box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-    transform: translateX(100%);
-    transition: transform 0.3s ease-in-out;
-    z-index: 1000;
+    z-index: 1000; /* Fica por baixo do botão, mas por cima do resto */
+    
+    /* A propriedade que o esconde fora do ecrã */
+    transform: translateX(100%); 
+    
+    /* A animação de deslize */
+    transition: transform 0.3s ease-in-out; 
+    
     padding: 80px 20px 20px;
 }
+
+/* A REGRA MAIS IMPORTANTE: O que acontece quando o menu está ativo */
 #side-menu.is-active {
-    transform: translateX(0);
+    transform: translateX(0); /* Move o menu para dentro do ecrã */
 }
+
+
+/* Estilos para os links dentro do menu (sem alterações) */
 #side-menu ul {
     list-style: none;
 }
