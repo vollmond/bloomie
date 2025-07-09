@@ -85,22 +85,21 @@ body::before {
 
 #gallery-container {
     display: grid;
-    gap: 1rem; /* O espaço entre as imagens */
+    gap: 1rem;
 
-    /* MÓVEL (POR DEFEITO):
-       Uma grelha de 2 colunas. É um bom ponto de partida para telemóveis. */
-    grid-template-columns: repeat(2, 1fr);
+    /* A NOVA REGRA MÁGICA: */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 }
 
+/* A regra para a imagem em si pode manter-se ou ser esta,
+   para garantir a proporção quadrada que gostou */
 #gallery-container img {
     width: 100%;
-    height: 100%; 
-    object-fit: cover; 
+    object-fit: cover;
     border-radius: 8px;
-    
-    /* A LINHA MÁGICA: Força a imagem a ser um quadrado perfeito */
-    aspect-ratio: 1 / 1; 
+    aspect-ratio: 1 / 1; /* Mantém as imagens quadradas */
 }
+
 
 
 /* DESKTOP (Ecrãs maiores que 768px) */
