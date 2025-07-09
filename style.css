@@ -94,9 +94,12 @@ body::before {
 
 #gallery-container img {
     width: 100%;
-    height: 100%; /* Faz a imagem preencher a célula da grelha */
-    object-fit: cover; /* Garante que a imagem cobre a área sem distorcer */
+    height: 100%; 
+    object-fit: cover; 
     border-radius: 8px;
+    
+    /* A LINHA MÁGICA: Força a imagem a ser um quadrado perfeito */
+    aspect-ratio: 1 / 1; 
 }
 
 
