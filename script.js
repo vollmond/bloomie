@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "massage": {
             title: "Massagens Personalizadas para o Seu Bem-Estar",
             text: "No nosso espaço, cada massagem é pensada à medida de quem a recebe. Oferecemos uma variedade de massagens com benefícios distintos:\n\n• Massagem de Relaxamento\n• Massagem Terapêutica\n• Massagem com Pedras Quentes\n• Drenagem Linfática Manual\n\nA nossa missão é proporcionar momentos de equilíbrio e cuidado, num ambiente calmo, seguro e acolhedor. Permita-se uma pausa. O seu corpo agradece.",
-            images: [ "imagens/massage1.jpg", "imagens/massage2.jpg", "imagens/massage3.jpg" ]
+            images: [ "imagens/massagem1.jpg", "imagens/massagem2.jpg", "imagens/massagem3.jpg" ]
         },
         "limpeza": {
             title: "Limpeza de Pele Profunda: Cuidado que se vê e se sente",
@@ -53,7 +53,6 @@ document.addEventListener('DOMContentLoaded', () => {
             images: [], 
             // NOVO: Adicionamos o código do mapa aqui
             mapIframe: `<<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d337.9957009252957!2d-8.222045710254251!3d37.09086603509134!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1acd62ac6fa579%3A0x9c4fc9ee775b5808!2sPESTE%20RIBEIRO%20DESINFESTA%C3%87%C3%95ES!5e1!3m2!1spt-PT!2spt!4v1752068603147!5m2!1spt-PT!2spt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe> height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
-        }
         }
     };
 
