@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "contacto": {
             title: "Fale Connosco",
-            text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento. Estamos disponíveis para responder a todas as suas questões.\n\n<a href='https://wa.me/351912345678' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
+            text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento. Estamos disponíveis para responder a todas as suas questões.\n\n<a href='https://wa.me/351965855121' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
             images: []
         }
     };
