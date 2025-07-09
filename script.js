@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "massage": {
             title: "Massagens Personalizadas para o Seu Bem-Estar",
             text: "No nosso espaço, cada massagem é pensada à medida de quem a recebe. Oferecemos uma variedade de massagens com benefícios distintos:\n\n• Massagem de Relaxamento\n• Massagem Terapêutica\n• Massagem com Pedras Quentes\n• Drenagem Linfática Manual\n\nA nossa missão é proporcionar momentos de equilíbrio e cuidado, num ambiente calmo, seguro e acolhedor. Permita-se uma pausa. O seu corpo agradece.",
-            images: [ "imagens/massage1.jpg", "imagens/massage2.jpg", "imagens/massage3.jpg" ]
+            images: [ "imagens/massagem1.jpg", "imagens/massagem2.jpg", "imagens/massagem3.jpg" ]
         },
         "limpeza": {
             title: "Limpeza de Pele Profunda: Cuidado que se vê e se sente",
