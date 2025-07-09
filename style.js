@@ -87,7 +87,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // 5. Mostra o conteúdo inicial ao carregar a página
-    displayContent('dep');
+
 
 });
