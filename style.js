@@ -71,7 +71,7 @@ const contentData = {
 
         // Limpa a galeria antiga e cria as novas imagens
         galleryContainer.innerHTML = ''; // Limpa!
-        content.images.forEach(imageUrl => {
+        content.imagens.forEach(imageUrl => {
             const img = document.createElement('img');
             img.src = imageUrl;
             img.alt = content.title; // Boa prática
