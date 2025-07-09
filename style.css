@@ -93,6 +93,7 @@ body::before {
     gap: 1rem;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduzi um pouco o minmax para melhor ajuste */
     margin-top: 2rem; /* Adiciona um bom espaço entre o texto e a galeria */
+    justify-content: center;
 }
 
 /* Estilos para cada Imagem da Galeria */
