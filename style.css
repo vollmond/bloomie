@@ -1,10 +1,8 @@
-/* Definição da paleta de cores, baseada no logo "Dharma Estética" */
+/* Definição da paleta de cores (pode ajustar se necessário) */
 :root {
-    --cor-dourada: #b08f5b;
-    --cor-escura: #4a4a4a;
-    --cor-creme-rgb: 245, 242, 233; /* Cor creme em formato RGB para usar com transparência */
-    --cor-fundo: #faf9f5;
-    --cor-branca: #FFFFFF;
+    --cor-escura: #5c5c5c; /* Um cinza escuro para o texto */
+    --cor-fundo: #fdfcfa; /* Um branco/bege muito claro */
+    --cor-caixa: #ffffff;
 }
 
 /* Reset básico */
@@ -17,11 +15,13 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: var(--cor-escura);
-    background-color: #e0e0e0; /* Um cinza neutro para o fundo da página inteira */
-    /* Removemos o background-image daqui */
+    background-color: var(--cor-fundo);
+    position: relative; 
+    min-height: 100vh;
+    overflow-x: hidden; /* Previne barras de scroll horizontais */
 }
 
-/* 1. AJUSTE NA MARCA D'ÁGUA */
+/* A MARCA D'ÁGUA NO FUNDO DA PÁGINA */
 body::before {
     content: '';
     position: fixed;
@@ -29,43 +29,60 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('imagens/logo.svg');
+    background-image: url('imagens/fundo-bloome.jpg'); /* USE O NOME DA SUA IMAGEM DE FUNDO */
     background-repeat: no-repeat;
-    /* Move o logo um pouco para cima do centro */
-    background-position: center 45%; 
-    background-size: 70vw;
-    /* Aumentei um pouco a opacidade para se ver melhor através da caixa */
-    opacity: 0.1; 
+    background-position: center center;
+    background-size: contain;
+    opacity: 0.1; /* Opacidade subtil */
     z-index: -1;
 }
 
-#page-wrapper {
-    width: 90%; /* Ocupa 90% da largura do ecrã */
-    max-width: 1200px; /* Mas não passa de 1200px */
-    margin: 5vh auto; /* Centraliza horizontalmente e dá uma margem vertical de 5% da altura do ecrã */
-    
-    /* A IMAGEM DE FUNDO VEM PARA AQUI */
-    background-image: url('imagens/fundo-bloome.jpg'); /* USE O NOME DA SUA IMAGEM DE FUNDO */
-    background-size: cover; /* Cobre todo o espaço do contentor */
-    background-position: center;
-
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2); /* Sombra para dar o efeito de "flutuar" */
-    overflow: hidden; /* Garante que tudo (ex: o header) fica dentro dos cantos arredondados */
+/* O CONTEÚDO PRINCIPAL, AGORA RESPONSÁVEL POR CENTRALIZAR A CAIXA */
+#main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh; /* Ocupa a altura total do ecrã */
+    padding: 2rem;
 }
 
-header {
-    background: rgba(44, 62, 80, 0.8); /* Exemplo: um fundo escuro semi-transparente para a tira */
-    padding: 1rem;
-    /* Removemos width: 100%, pois ele agora está contido pelo #page-wrapper */
+/* A CAIXA DE CONTEÚDO FLUTUANTE */
+#display-area {
+    background-color: var(--cor-caixa);
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    padding: 2rem;
+    width: 100%;
+    max-width: 550px; /* Caixa mais pequena e elegante */
+    text-align: center; /* Centraliza todo o texto por defeito */
 }
 
-header nav ul {
-    /* ... os seus estilos de navegação ... */
-    text-align: center; /* Exemplo para centrar os links dentro da tira */
+/* Estilos para o conteúdo dinâmico que será carregado */
+#text-container h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
 }
 
-/* Botão Hamburger (sem alterações) */
+#text-container p {
+    line-height: 1.7;
+    font-size: 1rem;
+}
+
+#gallery-container {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 10px;
+}
+#gallery-container img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+
+/* --- ESTILOS DO MENU HAMBURGER E PAINEL LATERAL (ajustados) --- */
+
 #hamburger-button {
     position: fixed;
     top: 20px;
@@ -78,53 +95,40 @@ header nav ul {
 #hamburger-button .bar {
     display: block;
     width: 30px;
-    height: 4px;
+    height: 3px;
     background-color: var(--cor-escura);
     margin: 6px 0;
     transition: 0.4s;
 }
 
-main {
-    padding: 2rem; /* Espaçamento interno para o conteúdo não colar nas bordas */
-}
-
-/* O #display-area agora pode ter um fundo transparente ou branco simples */
-#display-area {
-    background-color: rgba(255, 255, 255, 0.9); /* Um branco semi-transparente */
-    border-radius: 8px;
-    padding: 2rem;
-}
-
-/* Menu Lateral (sem alterações) */
 #side-menu {
     position: fixed;
     top: 0;
     right: 0;
     height: 100vh;
     width: 280px;
-    background-color: var(--cor-escura);
+    background-color: #333; /* Um fundo escuro para o menu */
     box-shadow: -5px 0 15px rgba(0,0,0,0.5);
     transform: translateX(100%);
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
-    padding: 100px 20px 20px;
+    padding: 80px 20px 20px;
 }
-#side-menu.is-active { transform: translateX(0); }
-/* ... (outros estilos do menu continuam iguais) ... */
-
-
-/* 2. REPOSICIONAMENTO DA ÁREA DE CONTEÚDO */
-#main-content {
-    /* Removemos o display:flex para ter mais controlo com padding */
-    padding: 70vh 2rem 5rem 2rem; /* Padding gigante no topo para empurrar a caixa para baixo */
+#side-menu.is-active {
+    transform: translateX(0);
 }
-
-/* 3. APLICAÇÃO DA TRANSPARÊNCIA NA CAIXA */
-#display-area {
-    /* A MUDANÇA ESTÁ AQUI: Usamos RGBA para o fundo */
-    background-color: rgba(var(--cor-creme-rgb), 0.75); /* Fundo creme com 75% de opacidade */
-    
-    /* BÓNUS: Efeito de vidro fosco para melhorar a legibilidade */
-    backdrop-filter: blur(10px);
-    
-    border: 1px solid rgba(255, 255, 255, 0.4); /* Borda branca subtil */
+#side-menu ul {
+    list-style: none;
+}
+#side-menu .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+    padding: 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+#side-menu .nav-link:hover {
+    background-color: #555;
+}
