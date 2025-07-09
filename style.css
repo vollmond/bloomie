@@ -1,3 +1,4 @@
+
 /* Definição da paleta de cores (pode ajustar se necessário) */
 :root {
     --cor-escura: #5c5c5c; /* Um cinza escuro para o texto */
@@ -166,4 +167,38 @@ body::before {
 }
 #side-menu .nav-link:hover {
     background-color: #555;
+}
+
+/* Estilos para o contentor do mapa */
+#map-container {
+    display: none; /* Começa escondido */
+    margin-top: 2rem;
+    width: 100%;
+    border-radius: 8px;
+    overflow: hidden; /* Garante que o iframe respeita os cantos arredondados */
+}
+
+#map-container iframe {
+    width: 100%; /* Faz o mapa ocupar toda a largura do contentor */
+    height: 350px; /* Altura do mapa */
+    border: none; /* Remove a borda padrão do iframe */
+}
+
+/* Estilos para o link/botão do WhatsApp */
+.whatsapp-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    background-color: #25D366; /* Cor oficial do WhatsApp */
+    color: #FFFFFF !important;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s, transform 0.2s;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.whatsapp-link:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
 }
