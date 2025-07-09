@@ -190,9 +190,12 @@ body::before {
     align-items: center; 
     justify-content: center;
     gap: 8px;
-    line-height: 1;
+
+    /* A LINHA EXTRA PARA CORRIGIR O ALINHAMENTO */
+    line-height: 1; /* Remove qualquer altura de linha extra que possa estar a afetar o alinhamento */
+
     margin-top: 1.5rem;
-    background-color: #25D366; /* Cor oficial do WhatsApp */
+    background-color: #25D366;
     color: #FFFFFF !important;
     padding: 12px 24px;
     border-radius: 30px;
