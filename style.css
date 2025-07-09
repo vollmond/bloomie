@@ -186,7 +186,10 @@ body::before {
 
 /* Estilos para o link/botão do WhatsApp */
 .whatsapp-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 8px;
     margin-top: 1.5rem;
     background-color: #25D366; /* Cor oficial do WhatsApp */
     color: #FFFFFF !important;
