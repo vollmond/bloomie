@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // --- Conteúdo do Site ---
     const contentData = {
-        const contentData = {
         "dep": {
             title: "Depilação a Laser com Tecnologia Três Ondas",
             text: "A depilação a laser com tecnologia de três ondas representa o que há de mais avançado no combate aos pelos indesejados. Este método combina, numa única aplicação, três comprimentos de onda — Alexandrite, Diodo e Nd:YAG — proporcionando resultados eficazes, seguros e adaptados a todos os tipos de pele.\n\nIdeal para quem procura uma solução duradoura, este sistema atua em diferentes profundidades do folículo piloso, garantindo a eliminação progressiva dos pelos desde as primeiras sessões. Além disso, o equipamento conta com um sistema de arrefecimento que protege a pele durante todo o processo, tornando o tratamento praticamente indolor.\n\nSe procura liberdade, conforto e uma pele suave o ano inteiro, a depilação a laser de três ondas é a escolha certa.",
