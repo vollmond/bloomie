@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         "contacto": {
             title: "Fale Connosco e Encontre-nos",
-            text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento. Estamos disponíveis para responder a todas as suas questões.\n\n<a href='https://wa.me/351920743163' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
+            text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento. Estamos disponíveis para responder a todas as suas questões: contacto@bloomestetica.pt.\n\n<a href='https://wa.me/351920743163' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
             // Deixamos a secção de imagens vazia para o contacto
             images: [], 
             // NOVO: Adicionamos o código do mapa aqui
