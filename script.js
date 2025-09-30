@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- PARTE 1: LÓGICA DO MENU HAMBURGER ---
+    // --- PARTE 1: LÓGICA DO MENU HAMBURGER (Funciona como antes) ---
     const hamburgerButton = document.getElementById('hamburger-button');
     const sideMenu = document.getElementById('side-menu');
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sideMenu.classList.toggle('is-active');
     });
 
-    // --- PARTE 2: BASE DE DADOS DE CONTEÚDO ---
+    // --- PARTE 2: BASE DE DADOS DE CONTEÚDO (O seu texto completo) ---
     const contentData = {
         "dep": {
             title: "Depilação a Laser com Tecnologia Três Ondas",
@@ -49,30 +49,36 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Fale Connosco e Encontre-nos",
             text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento através do nosso email:<br><br><a href='mailto:contacto@bloomestetica.pt' class='email-link'>contacto@bloomestetica.pt</a><br><br><a href='https://wa.me/351920743163' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
             images:[],
-            // A CORREÇÃO ESTÁ AQUI: A VÍRGULA NO FINAL DESTA LINHA FOI REMOVIDA
-            mapIframe: `<iframe src="http://googleusercontent.com/maps.google.com/3" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+            mapIframe: `<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3183.56885351835!2d-8.22744868470248!3d37.09315897988891!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd1b291583569c7b%3A0x6b758b7e2d93e2b2!2sEdif%C3%ADcio%20Ondas%20do%20Mar!5e0!3m2!1spt-PT!2spt!4v1665411786523!5m2!1spt-PT!2spt" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
         }
     };
 
-    // --- PARTE 3: LÓGICA DE EXIBIÇÃO ---
+    // --- PARTE 3: LÓGICA DE EXIBIÇÃO (Atualizada para a nova estrutura HTML) ---
+    
+    // Seleciona os contentores corretos
     const navLinks = document.querySelectorAll('.nav-link');
     const welcomeContainer = document.getElementById('text-container');
     const serviceContainer = document.getElementById('service-details-container');
     const galleryContainer = document.getElementById('gallery-container');
     const mapContainer = document.getElementById('map-container');
 
+    // Função principal que mostra o conteúdo
     function displayContent(key) {
         const content = contentData[key];
-        if (!content) return;
+        if (!content) return; // Se a chave não existir, não faz nada
 
+        // PASSO 1: Esconde a mensagem de boas-vindas
         welcomeContainer.style.display = 'none';
         
+        // PASSO 2: Prepara o texto, transformando quebras de linha (\n) em parágrafos
         const formattedText = content.text.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
 
+        // PASSO 3: Insere o novo conteúdo (título + texto) no contentor de serviços
         serviceContainer.innerHTML = `<h2>${content.title}</h2>${formattedText}`;
-        serviceContainer.style.display = 'block';
+        serviceContainer.style.display = 'block'; // Mostra o contentor de serviços
 
-        galleryContainer.innerHTML = '';
+        // PASSO 4: Limpa e constrói a galeria de imagens, se houver
+        galleryContainer.innerHTML = ''; // Limpa sempre a galeria
         if (content.images && content.images.length > 0) {
             content.images.forEach(imageUrl => {
                 const img = document.createElement('img');
@@ -80,31 +86,32 @@ document.addEventListener('DOMContentLoaded', () => {
                 img.alt = content.title;
                 galleryContainer.appendChild(img);
             });
-            galleryContainer.style.display = 'grid';
+            galleryContainer.style.display = 'grid'; // Mostra a galeria
         } else {
-            galleryContainer.style.display = 'none';
+            galleryContainer.style.display = 'none'; // Esconde se não houver imagens
         }
         
-        mapContainer.innerHTML = '';
+        // PASSO 5: Mostra o mapa APENAS para a página de contacto
+        mapContainer.innerHTML = ''; // Limpa sempre o mapa
         if (content.mapIframe) {
             mapContainer.innerHTML = content.mapIframe;
-            mapContainer.style.display = 'block';
+            mapContainer.style.display = 'block'; // Mostra o mapa
         } else {
-            mapContainer.style.display = 'none';
+            mapContainer.style.display = 'none'; // Esconde para outras páginas
         }
     }
 
-    // --- PARTE 4: EVENTOS DE CLIQUE ---
+    // --- PARTE 4: EVENTOS DE CLIQUE (Funciona como antes) ---
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const key = link.dataset.key;
-            displayContent(key);
-            sideMenu.classList.remove('is-active');
+            e.preventDefault(); // Impede o comportamento padrão do link
+            const key = link.dataset.key; // Pega a "data-key" (ex: "dep", "massage")
+            displayContent(key); // Chama a função para mostrar o conteúdo
+            sideMenu.classList.remove('is-active'); // Fecha o menu
         });
     });
 
-    // Estado inicial da página
+    // Estado inicial da página: esconde os contentores dinâmicos
     serviceContainer.style.display = 'none';
     galleryContainer.style.display = 'none';
     mapContainer.style.display = 'none';
