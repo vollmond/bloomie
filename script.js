@@ -1,130 +1,266 @@
-document.addEventListener('DOMContentLoaded', () => {
+/* Definição da paleta de cores */
+:root {
+    --cor-escura: #5c5c5c;
+    --cor-fundo: #fdfcfa;
+    --cor-caixa: #ffffff;
+    --cor-dourada: #c5a67c;
+}
 
-    // --- PARTE 1: LÓGICA DO MENU HAMBURGER ---
-    const hamburgerButton = document.getElementById('hamburger-button');
-    const sideMenu = document.getElementById('side-menu');
+/* Reset básico */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
-    if (hamburgerButton && sideMenu) {
-        hamburgerButton.addEventListener('click', () => {
-            sideMenu.classList.toggle('is-active');
-        });
-    }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--cor-escura);
+    background-color: var(--cor-fundo);
+    position: relative; 
+    min-height: 100vh;
+    overflow-x: hidden;
+}
 
-    // --- PARTE 2: BASE DE DADOS DE CONTEÚDO ---
-    const contentData = {
-        "dep": {
-            title: "Depilação a Laser com Tecnologia Três Ondas",
-            text: "A depilação a laser com tecnologia de três ondas representa o que há de mais avançado no combate aos pelos indesejados. Este método combina, numa única aplicação, três comprimentos de onda — Alexandrite, Diodo e Nd:YAG — proporcionando resultados eficazes, seguros e adaptados a todos os tipos de pele.\n\nIdeal para quem procura uma solução duradoura, este sistema atua em diferentes profundidades do folículo piloso, garantindo a eliminação progressiva dos pelos desde as primeiras sessões. Além disso, o equipamento conta com um sistema de arrefecimento que protege a pele durante todo o processo, tornando o tratamento praticamente indolor.\n\nSe procura liberdade, conforto e uma pele suave o ano inteiro, a depilação a laser de três ondas é a escolha certa.",
-            images: [ "imagens/dep.jpg" ]
-        },
-        "massage": {
-            title: "Massagens Personalizadas para o Seu Bem-Estar",
-            text: "No nosso espaço, cada massagem é pensada à medida de quem a recebe. Oferecemos uma variedade de massagens com benefícios distintos:\n\n• Massagem de Relaxamento\n• Massagem Terapêutica\n• Massagem com Pedras Quentes\n• Drenagem Linfática Manual\n\nA nossa missão é proporcionar momentos de equilíbrio e cuidado, num ambiente calmo, seguro e acolhedor. Permita-se uma pausa. O seu corpo agradece.",
-            images: [ "imagens/massagem1.jpg", "imagens/massagem2.jpg", "imagens/massagem3.jpg" ]
-        },
-        "limpeza": {
-            title: "Limpeza de Pele Profunda: Cuidado que se vê e se sente",
-            text: "Mais do que um ritual estético, a limpeza de pele é um tratamento essencial para manter o equilíbrio e a vitalidade da pele do rosto. O procedimento inclui higienização profunda, esfoliação, vapor de ozono para facilitar a extração de comedões (pontos negros) e aplicação de alta frequência para desinfetar e acelerar a cicatrização.\n\nCada sessão é finalizada com máscaras adaptadas, tónicos, hidratantes e proteção solar. Dê à sua pele o cuidado que ela merece.",
-            images: [ "imagens/limpeza.jpg" ]
-        },
-        "fototerapia": {
-            title: "Fototerapia – Luz que trata, regenera e transforma",
-            text: "A fototerapia utiliza comprimentos de onda específicos da luz (LED) para estimular processos naturais da pele de forma não invasiva. Cada cor atua de forma distinta: a luz azul combate bactérias e controla a acne; a luz vermelha estimula o colagénio e a firmeza; a luz âmbar melhora a vitalidade. A sessão é rápida, indolor e profundamente relaxante, podendo ser feita como tratamento isolado ou associada a outros procedimentos.",
-            images: ["imagens/fototerapia.jpg"] 
-        },
-        "hifu": {
-            title: "HiFu – Lifting sem cirurgia, resultado com naturalidade",
-            text: "O HiFu (Ultrassom Focalizado de Alta Intensidade) é um tratamento avançado que reafirma a pele e suaviza rugas sem cortes ou tempo de recuperação. A tecnologia atinge as camadas profundas da pele, estimulando a produção de colagénio de dentro para fora, com um efeito de lifting progressivo. É indicado para flacidez no rosto, papada, pescoço e corpo, permitindo retomar a rotina no mesmo dia.",
-            images: ["imagens/hifu.jpg"] 
-        },
-        "gel": {
-            title: "Unhas: Estilo, cuidado e personalidade",
-            text: "Oferecemos um serviço completo para mãos e pés, com várias opções para quem procura elegância e durabilidade. Trabalhamos com:\n\n• Unhas em gel\n• Verniz de gel\n• Manicure clássica com cutilagem\n• Pedicure completa\n\nMais do que unhas bonitas, criamos momentos de pausa, confiança e bem-estar. Porque mãos cuidadas falam de si, sem dizer uma palavra.",
-            images: ["imagens/gel.jpg"]
-        },
-        "micro": {
-            title: "Microagulhamento: Renovação profunda que vem da própria pele",
-            text: "O microagulhamento estimula a capacidade de regeneração que a pele já possui. Através de microperfurações controladas, ativamos a produção de colagénio, elastina e ácido hialurónico, três elementos fundamentais para uma pele firme e uniforme. Este procedimento é indicado para melhorar a textura da pele, reduzir marcas de acne, cicatrizes, poros dilatados, estrias e atenuar rugas finas.",
-            images: ["imagens/micro1.jpg", "imagens/micro2.jpg"] 
-        },
-        "contacto": {
-            title: "Fale Connosco e Encontre-nos",
-            text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento através do nosso email:<br><br><a href='mailto:contacto@bloomestetica.pt' class='email-link'>contacto@bloomestetica.pt</a><br><br><a href='https://wa.me/351920743163' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
-            images:[],
-            mapIframe: `<iframe src="http://googleusercontent.com/maps.google.com/5" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
-        }
-    };
+/* Marca d'água no fundo */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('imagens/logo.svg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    opacity: 0.1;
+    z-index: -1;
+}
 
-    // --- PARTE 3: LÓGICA DE EXIBIÇÃO CENTRALIZADA ---
-    const navLinks = document.querySelectorAll('.nav-link');
-    const welcomeContainer = document.getElementById('text-container');
-    const serviceContainer = document.getElementById('service-details-container');
-    const galleryContainer = document.getElementById('gallery-container');
-    const mapContainer = document.getElementById('map-container');
+/* Conteúdo Principal */
+#main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    padding: 2rem;
+}
 
-    /**
-     * Função MESTRE que controla todo o conteúdo visível na página.
-     * @param {string | null} key - A chave do serviço a ser mostrado, ou null para mostrar o estado inicial.
-     */
-    function renderContent(key) {
-        // Se a chave for nula ou vazia, mostramos o estado inicial (boas-vindas)
-        if (!key) {
-            welcomeContainer.style.display = 'block';
-            serviceContainer.style.display = 'none';
-            galleryContainer.style.display = 'none';
-            mapContainer.style.display = 'none';
-            return; // A função para aqui.
-        }
+/* Área de Exibição */
+#display-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: transparent;
+    padding: 2.5rem;
+    width: 100%;
+}
 
-        // Se uma chave de serviço foi fornecida, mostramos o serviço
-        const content = contentData[key];
-        if (!content) return; // Se a chave for inválida, não faz nada
+/* Container de boas-vindas original */
+#text-container {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    margin-bottom: 3rem;
+}
 
-        // Esconde a mensagem de boas-vindas e mostra o contentor de serviço
-        welcomeContainer.style.display = 'none';
-        
-        const formattedText = content.text.split('\n').map(p => `<p>${p}</p>`).join('');
-        serviceContainer.innerHTML = `<h2>${content.title}</h2>${formattedText}`;
-        serviceContainer.style.display = 'block';
+/* =============================================================== */
+/* === CORREÇÃO FINAL PARA O TEXTO DE BOAS-VINDAS INVISÍVEL === */
+/* =============================================================== */
+#text-container h1,
+#text-container p {
+    color: var(--cor-escura) !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    font-size: 1rem !important; /* Tamanho base para o parágrafo */
+    text-align: center !important; /* Força o alinhamento do parágrafo de boas-vindas */
+}
 
-        // Lida com a galeria
-        galleryContainer.innerHTML = '';
-        if (content.images && content.images.length > 0) {
-            content.images.forEach(imageUrl => {
-                const img = document.createElement('img');
-                img.src = imageUrl;
-                img.alt = content.title;
-                galleryContainer.appendChild(img);
-            });
-            galleryContainer.style.display = 'grid';
-        } else {
-            galleryContainer.style.display = 'none';
-        }
-        
-        // Lida com o mapa
-        mapContainer.innerHTML = '';
-        if (content.mapIframe) {
-            mapContainer.innerHTML = content.mapIframe;
-            mapContainer.style.display = 'block';
-        } else {
-            mapContainer.style.display = 'none';
-        }
-    }
+#text-container h1 {
+    font-size: 2rem !important; /* Tamanho maior para o título */
+}
+/* =============================================================== */
 
-    // --- PARTE 4: EVENTOS DE CLIQUE ---
-    navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            const key = link.dataset.key;
-            renderContent(key); // Chama a função mestre com a chave do serviço
-            if (sideMenu) {
-                sideMenu.classList.remove('is-active');
-            }
-        });
-    });
 
-    // --- PARTE 5: ESTADO INICIAL DA PÁGINA ---
-    // Inicia a página chamando a função mestre sem nenhuma chave.
-    renderContent(null);
+/* Novo container do serviço */
+#service-details-container {
+    width: 100%;
+    max-width: 650px;
+    padding: 2.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
 
-});
+#service-details-container h2,
+#service-details-container h4 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#service-details-container p,
+#service-details-container blockquote {
+    text-align: justify;
+    hyphens: auto;
+    line-height: 1.7;
+    margin-bottom: 1rem;
+}
+
+#service-details-container blockquote {
+    font-style: italic;
+    border-left: 3px solid var(--cor-dourada);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
+}
+
+#service-details-container ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 1.5rem 0;
+}
+
+#service-details-container li {
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    position: relative;
+    text-align: left; /* Garante alinhamento correto dos itens da lista */
+}
+
+#service-details-container li::before {
+    content: '✓';
+    color: var(--cor-dourada);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Galeria de Imagens */
+#gallery-container {
+    width: 100%;
+    max-width: 650px;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    margin-top: 2rem;
+    justify-content: center;
+}
+
+#gallery-container img {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Menu Hamburger e Painel Lateral */
+#hamburger-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+#hamburger-button .bar {
+    display: block;
+    width: 30px;
+    height: 3px;
+    background-color: var(--cor-escura);
+    margin: 6px 0;
+    transition: 0.4s;
+}
+
+#side-menu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    background-color: #333;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    z-index: 1000;
+    transform: translateX(100%); 
+    transition: transform 0.3s ease-in-out; 
+    padding: 80px 20px 20px;
+}
+
+#side-menu.is-active {
+    transform: translateX(0);
+}
+
+#side-menu ul {
+    list-style: none;
+}
+
+#side-menu .nav-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+    padding: 15px;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+#side-menu .nav-link:hover {
+    background-color: #555;
+}
+
+/* Mapa */
+#map-container {
+    display: none;
+    margin-top: 2rem;
+    width: 100%;
+    max-width: 650px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#map-container iframe {
+    width: 100%;
+    height: 350px;
+    border: none;
+}
+
+/* Links de Contacto */
+.whatsapp-link, .email-link {
+    line-height: 1;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.whatsapp-link {
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    background-color: #25D366;
+    color: #FFFFFF !important;
+    padding: 12px 24px;
+    border-radius: 30px;
+    font-weight: bold;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.whatsapp-link:hover {
+    background-color: #128C7E;
+    transform: translateY(-2px);
+}
+
+.email-link {
+    color: var(--cor-escura);
+    font-weight: bold;
+}
+
+.email-link:hover {
+    color: var(--cor-dourada);
+    text-decoration: underline;
+}
