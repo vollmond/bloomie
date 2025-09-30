@@ -64,6 +64,7 @@ body::before {
     max-width: 650px; /* Largura máxima consistente com o seu design */
     text-align: center; /* Centraliza o H1 e o parágrafo de boas-vindas */
     margin-bottom: 3rem; /* Aumentei um pouco o espaço para o próximo bloco */
+    background-color: red;
 }
 
 /* Estilos para o Título (H2) dentro do #text-container original */
