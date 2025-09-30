@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- PARTE 1: LÓGICA DO MENU HAMBURGER (Funciona como antes) ---
+    // --- PARTE 1: LÓGICA DO MENU HAMBURGER ---
     const hamburgerButton = document.getElementById('hamburger-button');
     const sideMenu = document.getElementById('side-menu');
 
@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
         sideMenu.classList.toggle('is-active');
     });
 
-    // --- PARTE 2: BASE DE DADOS DE CONTEÚDO (O seu texto completo) ---
+    // --- PARTE 2: BASE DE DADOS DE CONTEÚDO ---
     const contentData = {
         "dep": {
             title: "Depilação a Laser com Tecnologia Três Ondas",
@@ -49,4 +49,63 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Fale Connosco e Encontre-nos",
             text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento através do nosso email:<br><br><a href='mailto:contacto@bloomestetica.pt' class='email-link'>contacto@bloomestetica.pt</a><br><br><a href='https://wa.me/351920743163' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
             images:[],
-            mapIframe: `<iframe src="
+            // A CORREÇÃO ESTÁ AQUI: A VÍRGULA NO FINAL DESTA LINHA FOI REMOVIDA
+            mapIframe: `<iframe src="http://googleusercontent.com/maps.google.com/3" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+        }
+    };
+
+    // --- PARTE 3: LÓGICA DE EXIBIÇÃO ---
+    const navLinks = document.querySelectorAll('.nav-link');
+    const welcomeContainer = document.getElementById('text-container');
+    const serviceContainer = document.getElementById('service-details-container');
+    const galleryContainer = document.getElementById('gallery-container');
+    const mapContainer = document.getElementById('map-container');
+
+    function displayContent(key) {
+        const content = contentData[key];
+        if (!content) return;
+
+        welcomeContainer.style.display = 'none';
+        
+        const formattedText = content.text.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
+
+        serviceContainer.innerHTML = `<h2>${content.title}</h2>${formattedText}`;
+        serviceContainer.style.display = 'block';
+
+        galleryContainer.innerHTML = '';
+        if (content.images && content.images.length > 0) {
+            content.images.forEach(imageUrl => {
+                const img = document.createElement('img');
+                img.src = imageUrl;
+                img.alt = content.title;
+                galleryContainer.appendChild(img);
+            });
+            galleryContainer.style.display = 'grid';
+        } else {
+            galleryContainer.style.display = 'none';
+        }
+        
+        mapContainer.innerHTML = '';
+        if (content.mapIframe) {
+            mapContainer.innerHTML = content.mapIframe;
+            mapContainer.style.display = 'block';
+        } else {
+            mapContainer.style.display = 'none';
+        }
+    }
+
+    // --- PARTE 4: EVENTOS DE CLIQUE ---
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const key = link.dataset.key;
+            displayContent(key);
+            sideMenu.classList.remove('is-active');
+        });
+    });
+
+    // Estado inicial da página
+    serviceContainer.style.display = 'none';
+    galleryContainer.style.display = 'none';
+    mapContainer.style.display = 'none';
+});
