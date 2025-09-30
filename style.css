@@ -64,7 +64,6 @@ body::before {
     max-width: 650px; /* Largura máxima consistente com o seu design */
     text-align: center; /* Centraliza o H1 e o parágrafo de boas-vindas */
     margin-bottom: 3rem; /* Aumentei um pouco o espaço para o próximo bloco */
-    background-color: red;
 }
 
 /* Estilos para o Título (H2) dentro do #text-container original */
@@ -269,4 +268,21 @@ body::before {
 .email-link:hover {
     color: var(--cor-dourada);
     text-decoration: underline;
+}
+
+#text-container h1,
+#text-container p {
+    color: #5c5c5c !important;       /* Força a cor do texto a ser o seu cinza escuro */
+    visibility: visible !important;  /* Força o texto a ser visível */
+    opacity: 1 !important;           /* Força o texto a não ser transparente */
+}
+
+/* Regra separada para garantir que o título tem um bom tamanho */
+#text-container h1 {
+    font-size: 2rem !important;
+}
+
+/* Regra separada para garantir que o parágrafo tem um bom tamanho */
+#text-container p {
+    font-size: 1rem !important;
 }
