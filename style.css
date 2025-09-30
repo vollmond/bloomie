@@ -4,6 +4,7 @@
     --cor-escura: #5c5c5c; /* Um cinza escuro para o texto */
     --cor-fundo: #fdfcfa; /* Um branco/bege muito claro */
     --cor-caixa: #ffffff;
+    --cor-dourada: #c5a67c; /* Adicionei esta cor para o hover do email, caso queira usar */
 }
 
 /* Reset básico */
@@ -48,192 +49,98 @@ body::before {
     padding: 2rem;
 }
 
-/* A CAIXA AGORA FICA INVISÍVEL */
+/*
+ * ===================================================================
+ * === MUDANÇAS PRINCIPAIS AQUI: ÁREA DE EXIBIÇÃO E NOVOS BLOCOS ===
+ * ===================================================================
+ */
+
+/* A área principal agora usa Flexbox para centralizar os seus filhos */
 #display-area {
-    /* Removemos o fundo, a borda e a sombra para a tornar invisível */
+    /* Propriedades para centralizar os blocos de conteúdo */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* Estilos originais mantidos */
     background-color: transparent;
-    border: none;
-    box-shadow: none;
-    
-    /* Mantemos o resto para estruturar o conteúdo */
     padding: 2.5rem;
     width: 100%;
-    max-width: 650px; /* Podemos ajustar a largura do texto */
-    text-align: center;
 }
 
-/* Garante que o container do texto e da galeria ocupam a mesma largura,
-   resolvendo o problema de alinhamento no telemóvel. */
-#text-container,
-#gallery-container {
+/* Container de boas-vindas original */
+#text-container {
     width: 100%;
+    max-width: 650px; /* Largura máxima consistente com o seu design */
+    text-align: center; /* Centraliza o H1 e o parágrafo de boas-vindas */
+    margin-bottom: 3rem; /* Aumentei um pouco o espaço para o próximo bloco */
 }
 
-/* Estilos para o Título (H2) */
+/* Estilos para o Título (H2) dentro do #text-container original */
 #text-container h2 {
     color: var(--cor-escura);
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    text-align: center; /* Garante que o título está sempre centrado */
-    /* A regra 'text-shadow' foi removida, já não é necessária com o fundo atual. */
+    text-align: center;
 }
 
-/* Estilos para o Parágrafo (P) com o texto justificado */
+/* Estilos para o Parágrafo (P) com o texto justificado no #text-container original */
 #text-container p {
     font-size: 1rem;
     line-height: 1.7;
     text-align: justify; /* O seu pedido para justificar o texto */
     hyphens: auto;      /* Ajuda na hifenização para um look mais limpo */
-    /* A regra 'text-shadow' foi removida. */
 }
 
-/* Estilos para a Galeria de Imagens */
-#gallery-container {
-    display: grid;
-    gap: 1rem;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduzi um pouco o minmax para melhor ajuste */
-    margin-top: 2rem; /* Adiciona um bom espaço entre o texto e a galeria */
-    justify-content: center;
-}
+/* --- NOVO BLOCO DE ESTILOS PARA O CONTAINER DO SERVIÇO --- */
 
-/* Estilos para cada Imagem da Galeria */
-#gallery-container img {
+#service-details-container {
     width: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-    aspect-ratio: 1 / 1; /* Mantém as imagens quadradas */
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Adiciona uma sombra subtil às imagens */
+    max-width: 650px; /* Mesma largura máxima para manter a consistência */
+    padding: 2.5rem; /* Espaçamento interno generoso */
+    background-color: #ffffff; /* Fundo branco para destacar do fundo da página */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08); /* Sombra mais suave e moderna */
+    margin-bottom: 2rem; /* Espaço abaixo do bloco */
 }
 
-/* --- ESTILOS DO MENU HAMBURGER E PAINEL LATERAL (VERSÃO CORRIGIDA) --- */
-
-#hamburger-button {
-    position: fixed; /* Fixo na janela do navegador */
-    top: 20px;
-    right: 20px;
-    z-index: 1001; /* Fica sempre por cima do menu */
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
+#service-details-container h2,
+#service-details-container h4 {
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-#hamburger-button .bar {
-    display: block;
-    width: 30px;
-    height: 3px;
-    background-color: var(--cor-escura);
-    margin: 6px 0;
-    transition: 0.4s;
+#service-details-container p,
+#service-details-container blockquote {
+    text-align: justify;
+    hyphens: auto;
+    line-height: 1.7;
+    margin-bottom: 1rem;
 }
 
-/* O painel do menu lateral (escondido por defeito) */
-#side-menu {
-    position: fixed;
-    top: 0;
-    right: 0;
-    height: 100vh; /* Ocupa a altura toda do ecrã */
-    width: 280px;  /* Largura do menu */
-    background-color: #333;
-    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
-    z-index: 1000; /* Fica por baixo do botão, mas por cima do resto */
-    
-    /* A propriedade que o esconde fora do ecrã */
-    transform: translateX(100%); 
-    
-    /* A animação de deslize */
-    transition: transform 0.3s ease-in-out; 
-    
-    padding: 80px 20px 20px;
+#service-details-container blockquote {
+    font-style: italic;
+    border-left: 3px solid var(--cor-dourada);
+    padding-left: 1rem;
+    margin: 1.5rem 0;
 }
 
-/* A REGRA MAIS IMPORTANTE: O que acontece quando o menu está ativo */
-#side-menu.is-active {
-    transform: translateX(0); /* Move o menu para dentro do ecrã */
+/* A MÁGICA PARA AS LISTAS FICAREM BONITAS */
+#service-details-container ul {
+    list-style-type: none; /* Remove as bolinhas */
+    padding-left: 0;       /* Remove a indentação */
+    margin: 1.5rem 0;
 }
 
-
-/* Estilos para os links dentro do menu (sem alterações) */
-#side-menu ul {
-    list-style: none;
-}
-#side-menu .nav-link {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    display: block;
-    padding: 15px;
-    border-radius: 5px;
-    transition: background-color 0.2s;
-}
-#side-menu .nav-link:hover {
-    background-color: #555;
+#service-details-container li {
+    margin-bottom: 0.75rem; /* Espaço entre os itens da lista */
+    padding-left: 1.5rem;   /* Cria um novo espaçamento à esquerda */
+    position: relative;
 }
 
-/* Estilos para o contentor do mapa */
-#map-container {
-    display: none; /* Começa escondido */
-    margin-top: 2rem;
-    width: 100%;
-    border-radius: 8px;
-    overflow: hidden; /* Garante que o iframe respeita os cantos arredondados */
-}
-
-#map-container iframe {
-    width: 100%; /* Faz o mapa ocupar toda a largura do contentor */
-    height: 350px; /* Altura do mapa */
-    border: none; /* Remove a borda padrão do iframe */
-}
-
-/* Estilos para o link/botão do WhatsApp */
-.whatsapp-link {
-    display: inline-flex;
-    align-items: center; 
-    justify-content: center;
-    gap: 8px;
-
-    /* A LINHA EXTRA PARA CORRIGIR O ALINHAMENTO */
-    line-height: 1; /* Remove qualquer altura de linha extra que possa estar a afetar o alinhamento */
-
-    margin-top: 1.5rem;
-    background-color: #25D366;
-    color: #FFFFFF !important;
-    padding: 12px 24px;
-    border-radius: 30px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background-color 0.3s, transform 0.2s;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.whatsapp-link:hover {
-    background-color: #128C7E;
-    transform: translateY(-2px);
-}
-
-/* Estilos para a nova linha separadora e o link de email */
-
-.contact-divider {
-    border: none; /* Remove a linha padrão e feia do navegador */
-    height: 1px;  /* Define a espessura da nossa linha */
-    background-color: #ddd; /* Uma cor cinza clara e subtil */
-    margin: 1.5rem auto;  /* Espaçamento vertical e centralização */
-    width: 50%;         /* Faz a linha ter apenas 50% da largura da caixa */
-}
-
-.email-link {
-    color: var(--cor-escura);
-    font-weight: bold;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.email-link:hover {
-    color: var(--cor-dourada); /* Usa a cor dourada do seu tema ao passar o rato */
-    text-decoration: underline;
-}
-
-/* Garante que o botão de WhatsApp tem margem por cima depois da nova linha */
-.whatsapp-link {
-    margin-top: 1.5rem;
-}
+/* Adiciona um "check" ou outro ícone subtil no lugar das bolinhas */
+#service-details-container li::before {
+    content: '✓'; /* Você pode usar '•', '–' ou qualquer outro símbolo */
+    color: var(--cor-dourada); /* Uma cor de destaque */
+    position: absolute;
+    left: 0;
