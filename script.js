@@ -51,28 +51,43 @@ document.addEventListener('DOMContentLoaded', () => {
             title: "Fale Connosco e Encontre-nos",
             text: "Está pronto para se sentir melhor? Contacte-nos para agendar a sua avaliação ou tratamento através do nosso email:<br><br><a href='mailto:contacto@bloomestetica.pt' class='email-link'>contacto@bloomestetica.pt</a><br><br><a href='https://wa.me/351920743163' target='_blank' class='whatsapp-link'>💬 Falar no WhatsApp</a>",
             images:[],
-            mapIframe: `<iframe src="http://googleusercontent.com/maps.google.com/4" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
+            mapIframe: `<iframe src="http://googleusercontent.com/maps.google.com/5" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>`
         }
     };
 
-    // --- PARTE 3: LÓGICA DE EXIBIÇÃO ---
+    // --- PARTE 3: LÓGICA DE EXIBIÇÃO CENTRALIZADA ---
     const navLinks = document.querySelectorAll('.nav-link');
     const welcomeContainer = document.getElementById('text-container');
     const serviceContainer = document.getElementById('service-details-container');
     const galleryContainer = document.getElementById('gallery-container');
     const mapContainer = document.getElementById('map-container');
 
-    function displayContent(key) {
-        const content = contentData[key];
-        if (!content) return;
+    /**
+     * Função MESTRE que controla todo o conteúdo visível na página.
+     * @param {string | null} key - A chave do serviço a ser mostrado, ou null para mostrar o estado inicial.
+     */
+    function renderContent(key) {
+        // Se a chave for nula ou vazia, mostramos o estado inicial (boas-vindas)
+        if (!key) {
+            welcomeContainer.style.display = 'block';
+            serviceContainer.style.display = 'none';
+            galleryContainer.style.display = 'none';
+            mapContainer.style.display = 'none';
+            return; // A função para aqui.
+        }
 
+        // Se uma chave de serviço foi fornecida, mostramos o serviço
+        const content = contentData[key];
+        if (!content) return; // Se a chave for inválida, não faz nada
+
+        // Esconde a mensagem de boas-vindas e mostra o contentor de serviço
         welcomeContainer.style.display = 'none';
         
-        const formattedText = content.text.split('\n').map(paragraph => `<p>${paragraph}</p>`).join('');
-
+        const formattedText = content.text.split('\n').map(p => `<p>${p}</p>`).join('');
         serviceContainer.innerHTML = `<h2>${content.title}</h2>${formattedText}`;
         serviceContainer.style.display = 'block';
 
+        // Lida com a galeria
         galleryContainer.innerHTML = '';
         if (content.images && content.images.length > 0) {
             content.images.forEach(imageUrl => {
@@ -86,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
             galleryContainer.style.display = 'none';
         }
         
+        // Lida com o mapa
         mapContainer.innerHTML = '';
         if (content.mapIframe) {
             mapContainer.innerHTML = content.mapIframe;
@@ -100,32 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
             const key = link.dataset.key;
-            displayContent(key);
+            renderContent(key); // Chama a função mestre com a chave do serviço
             if (sideMenu) {
                 sideMenu.classList.remove('is-active');
             }
         });
     });
 
-    // --- PARTE 5: ESTADO INICIAL DA PÁGINA (A CORREÇÃO ESTÁ AQUI) ---
-    function setInitialState() {
-        // Mostra explicitamente o contentor de boas-vindas
-        if (welcomeContainer) {
-            welcomeContainer.style.display = 'block';
-        }
-        // Garante que todos os outros contentores dinâmicos estão escondidos
-        if (serviceContainer) {
-            serviceContainer.style.display = 'none';
-        }
-        if (galleryContainer) {
-            galleryContainer.style.display = 'none';
-        }
-        if (mapContainer) {
-            mapContainer.style.display = 'none';
-        }
-    }
-
-    // Define o estado inicial assim que o script é executado
-    setInitialState();
+    // --- PARTE 5: ESTADO INICIAL DA PÁGINA ---
+    // Inicia a página chamando a função mestre sem nenhuma chave.
+    renderContent(null);
 
 });
